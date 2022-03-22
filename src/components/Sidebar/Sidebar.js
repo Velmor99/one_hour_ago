@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useMediaQuery } from "react-responsive";
 import "./sidebar.scss";
 
 const Sidebar = () => {
@@ -10,6 +11,9 @@ const Sidebar = () => {
   const [isPassword, togglePassword] = useState(false);
   const [isSignOut, toggleSignOut] = useState(false);
   const [isToggle, changeToggle] = useState(false);
+  const isMediumSize = useMediaQuery({
+    query: "(min-width: 768px)",
+  });
 
   const toggleMenu = (value) => {
     switch (value) {
@@ -90,15 +94,20 @@ const Sidebar = () => {
   };
 
   return (
-    <>
+    <div>
       <div className={isToggle ? "navigation active" : "navigation"}>
         <ul>
           <li
             className={isHome ? "list active" : "list"}
             onClick={() => toggleMenu("isHome")}
           >
-            <b></b>
-            <b></b>
+            {isMediumSize && (
+              <>
+                <b></b>
+                <b></b>
+              </>
+            )}
+
             <a href="#">
               <span className="icon">
                 <ion-icon name="home-outline"></ion-icon>
@@ -110,8 +119,12 @@ const Sidebar = () => {
             className={isProfile ? "list active" : "list"}
             onClick={() => toggleMenu("isProfile")}
           >
-            <b></b>
-            <b></b>
+            {isMediumSize && (
+              <>
+                <b></b>
+                <b></b>
+              </>
+            )}
             <a href="#">
               <span className="icon">
                 <ion-icon name="person-outline"></ion-icon>
@@ -123,8 +136,12 @@ const Sidebar = () => {
             className={isMessages ? "list active" : "list"}
             onClick={() => toggleMenu("isMessages")}
           >
-            <b></b>
-            <b></b>
+            {isMediumSize && (
+              <>
+                <b></b>
+                <b></b>
+              </>
+            )}
             <a href="#">
               <span className="icon">
                 <ion-icon name="chatbubbles-outline"></ion-icon>
@@ -136,8 +153,12 @@ const Sidebar = () => {
             className={isSettings ? "list active" : "list"}
             onClick={() => toggleMenu("isSettings")}
           >
-            <b></b>
-            <b></b>
+            {isMediumSize && (
+              <>
+                <b></b>
+                <b></b>
+              </>
+            )}
             <a href="#">
               <span className="icon">
                 <ion-icon name="cog-outline"></ion-icon>
@@ -146,37 +167,15 @@ const Sidebar = () => {
             </a>
           </li>
           <li
-            className={isHelp ? "list active" : "list"}
-            onClick={() => toggleMenu("isHelp")}
-          >
-            <b></b>
-            <b></b>
-            <a href="#">
-              <span className="icon">
-                <ion-icon name="help-circle-outline"></ion-icon>
-              </span>
-              <span className="title">Help</span>
-            </a>
-          </li>
-          <li
-            className={isPassword ? "list active" : "list"}
-            onClick={() => toggleMenu("isPassword")}
-          >
-            <b></b>
-            <b></b>
-            <a href="#">
-              <span className="icon">
-                <ion-icon name="help-circle-outline"></ion-icon>
-              </span>
-              <span className="title">Password</span>
-            </a>
-          </li>
-          <li
             className={isSignOut ? "list active" : "list"}
             onClick={() => toggleMenu("isSignOut")}
           >
-            <b></b>
-            <b></b>
+            {isMediumSize && (
+              <>
+                <b></b>
+                <b></b>
+              </>
+            )}
             <a href="#">
               <span className="icon">
                 <ion-icon name="log-out-outline"></ion-icon>
@@ -186,17 +185,19 @@ const Sidebar = () => {
           </li>
         </ul>
       </div>
-      <div
-        onClick={() => toggleMenu("isToggle")}
-        className={isToggle ? "toggle active" : "toggle"}
-      >
-        {isToggle ? (
-          <ion-icon name="close-outline"></ion-icon>
-        ) : (
-          <ion-icon name="menu-outline"></ion-icon>
-        )}
-      </div>
-    </>
+      {isMediumSize && (
+        <div
+          onClick={() => toggleMenu("isToggle")}
+          className={isToggle ? "toggle active" : "toggle"}
+        >
+          {isToggle ? (
+            <ion-icon name="close-outline"></ion-icon>
+          ) : (
+            <ion-icon name="menu-outline"></ion-icon>
+          )}
+        </div>
+      )}
+    </div>
   );
 };
 
